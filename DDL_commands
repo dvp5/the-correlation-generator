@@ -1,0 +1,85 @@
+Here's a draft of some of the DDL commands we'll need after looking at our ER diagram.
+We're still going to need to determine the datatypes from all of the different gapminder tables,
+so I've left those undetermined for now.
+
+CREATE TABLE Nation(
+	nationkey CHAR(3),
+	name CHAR(50),
+	PRIMARY KEY(nationkey)
+)
+
+CREATE TABLE Year(
+	yearkey INTEGER,
+	PRIMARY KEY(yearkey)
+)
+
+CREATE TABLE Finances(
+	nationkey CHAR(3),
+	yearkey INTEGER,
+	purchasing_power <datatype>,
+	unemployment <datatype>,
+	gini_coefficient <datatype>,
+	PRIMARY KEY (nationkey, yearkey),
+	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (yearkey) REFERENCES Year
+)
+
+CREATE TABLE NetCon(
+	nationkey CHAR(3),
+	yearkey INTEGER,
+	internet_users <datatype>,
+	cell_subscriptions <datatype>,
+	PRIMARY KEY (nationkey, yearkey),
+	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (yearkey) REFERENCES Year
+)
+CREATE TABLE QoL(
+	nationkey CHAR(3),
+	yearkey INTEGER,
+	child_deaths <datatype>,
+	sanitation_usage <datatype>,
+	PRIMARY KEY (nationkey, yearkey),
+	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (yearkey) REFERENCES Year
+)
+
+CREATE TABLE Sustainability(
+	nationkey CHAR(3),
+	yearkey INTEGER,
+	yearly_CO2 <datatype>,
+	tree_removal <datatype>,
+	PRIMARY KEY (nationkey, yearkey),
+	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (yearkey) REFERENCES Year
+)
+
+CREATE TABLE Energy(
+	nationkey CHAR(3),
+	yearkey INTEGER,
+	nuclear_electricity <datatype>,
+	SDI <datatype>,
+	gas_prices <datatype>,
+	PRIMARY KEY (nationkey, yearkey),
+	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (yearkey) REFERENCES Year
+)
+
+CREATE TABLE Weather(
+	nationkey CHAR(3),
+	yearkey INTEGER,
+	extreme_heat <datatype>,
+	global_temperatures <datatype>,
+	PRIMARY KEY (nationkey, yearkey),
+	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (yearkey) REFERENCES Year
+)
+
+CREATE TABLE Finances(
+	nationkey CHAR(3),
+	yearkey INTEGER,
+	child_population  <datatype>,
+	population <datatype>,
+	PRIMARY KEY (nationkey, yearkey),
+	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (yearkey) REFERENCES Year
+)
