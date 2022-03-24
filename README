@@ -79,5 +79,3 @@ Execute this when you want to deactivate the environment
 deactivate
 
 pg_ctl -D <Next to class database>/corrgen stop
-
->>>>>>> f084e81 (Initial work on setup)
