@@ -63,8 +63,7 @@ CREATE TABLE Energy(
 CREATE TABLE Population (
 	nationkey CHAR(3) NOT NULL,
 	yearkey INTEGER NOT NULL,
-	child_population  <datatype> NOT NULL,
-	population <datatype> NOT NULL,
+	child_population INTEGER NOT NULL,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
