@@ -1,5 +1,5 @@
 CREATE TABLE Nation(
-	nationkey CHAR(3) NOT NULL,
+	nationkey CHAR(20) NOT NULL,
 	nationname VARCHAR(64) NOT NULL,
 	PRIMARY KEY(nationkey)
 );
@@ -12,8 +12,8 @@ CREATE TABLE Year(
 CREATE TABLE Finances(
 	nationkey CHAR(3)  NOT NULL,
 	yearkey INTEGER  NOT NULL,
-	purchasing_power <datatype>  NOT NULL,
-	unemployment <datatype>  NOT NULL,
+	ppp DOUBLE NOT NULL,
+	unemployment DOUBLE  NOT NULL,
 	gini_coefficient <datatype>  NOT NULL,
 	PRIMARY KEY (nationkey, yearkey)  NOT NULL,
 	FOREIGN KEY (nationkey) REFERENCES Nation
