@@ -14,7 +14,7 @@ CREATE TABLE Finances(
 	yearkey INTEGER  NOT NULL,
 	ppp DOUBLE NOT NULL,
 	unemployment DOUBLE  NOT NULL,
-	gini_coefficient <datatype>  NOT NULL,
+	gini_coefficient DOUBLE  NOT NULL,
 	PRIMARY KEY (nationkey, yearkey)  NOT NULL,
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
@@ -23,8 +23,8 @@ CREATE TABLE Finances(
 CREATE TABLE NetCon(
 	nationkey CHAR(3)  NOT NULL,
 	yearkey INTEGER  NOT NULL,
-	internet_users <datatype>  NOT NULL,
-	cell_subscriptions <datatype>  NOT NULL,
+	internet_users DOUBLE  NOT NULL,
+	cell_subscriptions INTEGER  NOT NULL,
 	PRIMARY KEY (nationkey, yearkey)  NOT NULL,
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
@@ -33,8 +33,8 @@ CREATE TABLE NetCon(
 CREATE TABLE QoL(
 	nationkey CHAR(3)  NOT NULL,
 	yearkey INTEGER  NOT NULL,
-	child_deaths <datatype>  NOT NULL,
-	sanitation_usage <datatype>  NOT NULL,
+	child_deaths DOUBLE  NOT NULL,
+	sanitation_usage DOUBLE  NOT NULL,
 	PRIMARY KEY (nationkey, yearkey)  NOT NULL,
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
@@ -43,8 +43,8 @@ CREATE TABLE QoL(
 CREATE TABLE Sustainability(
 	nationkey CHAR(3)  NOT NULL,
 	yearkey INTEGER  NOT NULL,
-	yearly_CO2 <datatype>  NOT NULL,
-	tree_removal <datatype>  NOT NULL,
+	yearly_CO2 DOUBLE NOT NULL,
+	forest_land DOUBLE  NOT NULL,
 	PRIMARY KEY (nationkey, yearkey)  NOT NULL,
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
@@ -53,7 +53,7 @@ CREATE TABLE Sustainability(
 CREATE TABLE Energy(
 	nationkey CHAR(3)  NOT NULL,
 	yearkey INTEGER  NOT NULL,
-	nuclear_electricity <datatype>  NOT NULL,
+	nuclear_electricity DOUBLE NOT NULL,
 	SDI <datatype>  NOT NULL,
 	gas_prices <datatype> NOT NULL,
 	PRIMARY KEY (nationkey, yearkey)  NOT NULL,
