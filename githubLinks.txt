@@ -1,0 +1,35 @@
+celphones
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--co2_emissions_tonnes_per_person--by--geo--time.csv
+
+child mortality 
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--child_mortality_0_5_year_olds_more_years_version_7--by--geo--time.csv
+
+internet users by geo time
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--internet_users--by--geo--time.csv
+
+inequality index gini
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/1fa754908abc61ad71749dc2e4305dcd64c82f07/countries-etc-datapoints/ddf--datapoints--inequality_index_gini--by--geo--time.csv
+
+co2
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--co2_emissions_tonnes_per_person--by--geo--time.csv
+
+ppp
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/1fa754908abc61ad71749dc2e4305dcd64c82f07/countries-etc-datapoints/ddf--datapoints--alternative_gdppercapita_ppp_inflation_adjusted_from_pwt--by--geo--time.csv
+
+long term unemployment rate
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/1fa754908abc61ad71749dc2e4305dcd64c82f07/countries-etc-datapoints/ddf--datapoints--long_term_unemployment_rate_percent--by--geo--time.csv
+
+nuclear
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--nuclear_power_generation_per_person--by--geo--time.csv
+
+sanitation
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--at_least_basic_sanitation_overall_access_percent--by--geo--time.csv
+
+forest 
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--forest_coverage_percent--by--geo--time.csv
+
+gas prices
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--pump_price_for_gasoline_us_per_liter--by--geo--time.csv
+
+child population
+https://github.com/open-numbers/ddf--gapminder--systema_globalis/blob/master/countries-etc-datapoints/ddf--datapoints--population_aged_0_4_years_total_number--by--geo--time.csv
