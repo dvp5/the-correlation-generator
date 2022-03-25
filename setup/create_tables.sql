@@ -60,16 +60,6 @@ CREATE TABLE Energy(
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
-CREATE TABLE Weather(
-	nationkey CHAR(3)  NOT NULL,
-	yearkey INTEGER  NOT NULL,
-	extreme_heat <datatype>  NOT NULL,
-	global_temperatures <datatype>  NOT NULL,
-	PRIMARY KEY (nationkey, yearkey),
-	FOREIGN KEY (nationkey) REFERENCES Nation,
-	FOREIGN KEY (yearkey) REFERENCES Year
-);
-
 CREATE TABLE Finances(
 	nationkey CHAR(3) NOT NULL,
 	yearkey INTEGER NOT NULL,
