@@ -16,7 +16,7 @@ CREATE TABLE Finances(
 	unemployment DOUBLE NOT NULL,
 	gini_coefficient DOUBLE NOT NULL,
 	PRIMARY KEY (nationkey, yearkey),
-	FOREIGN KEY (nationkey) REFERENCES Nation
+	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
@@ -54,8 +54,7 @@ CREATE TABLE Energy(
 	nationkey CHAR(3) NOT NULL,
 	yearkey INTEGER NOT NULL,
 	nuclear_electricity DOUBLE NOT NULL,
-	SDI <datatype> NOT NULL,
-	gas_prices <datatype> NOT NULL,
+	gas_prices DOUBLE NOT NULL,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
