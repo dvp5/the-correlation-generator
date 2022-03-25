@@ -60,7 +60,7 @@ CREATE TABLE Energy(
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
-CREATE TABLE Finances(
+CREATE TABLE Population (
 	nationkey CHAR(3) NOT NULL,
 	yearkey INTEGER NOT NULL,
 	child_population  <datatype> NOT NULL,
