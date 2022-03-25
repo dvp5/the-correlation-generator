@@ -35,7 +35,7 @@ CREATE TABLE QoL(
 	yearkey INTEGER NOT NULL,
 	child_deaths DOUBLE NOT NULL,
 	sanitation_usage DOUBLE NOT NULL,
-	PRIMARY KEY (nationkey, yearkey)  NOT NULL,
+	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
