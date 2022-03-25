@@ -10,7 +10,6 @@ __port = 8888
 __host = '/tmp'
 
 gapminder = __setup + 'ddf--gapminder--systema_globalis/'
-entries = gapminder + 'ddf--entities--geo--country.csv'
 
 
 def main():
@@ -25,6 +24,7 @@ def main():
 
 
 def populate_nation(cur):
+    entries = gapminder + 'ddf--entities--geo--country.csv'
     with open(entries) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -34,6 +34,14 @@ def populate_nation(cur):
 
             print(country, name)
             insert_string = f'INSERT INTO NATION VALUES (\'{country}\', \'{name}\');'
+            cur.execute(insert_string)
+
+
+def populate_year(cur):
+    entries = gapminder
+    with open(entries) as csvfile:
+        for i in range(1600, 2100):
+            insert_string = f'INSERT INT YEARS VALUES ({i});'
             cur.execute(insert_string)
 
 
