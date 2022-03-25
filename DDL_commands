@@ -6,12 +6,12 @@ CREATE TABLE Nation(
 	nationkey CHAR(3),
 	name CHAR(50),
 	PRIMARY KEY(nationkey)
-)
+);
 
 CREATE TABLE Year(
 	yearkey INTEGER,
 	PRIMARY KEY(yearkey)
-)
+);
 
 CREATE TABLE Finances(
 	nationkey CHAR(3),
@@ -22,7 +22,7 @@ CREATE TABLE Finances(
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
-)
+);
 
 CREATE TABLE NetCon(
 	nationkey CHAR(3),
@@ -32,7 +32,8 @@ CREATE TABLE NetCon(
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
-)
+);
+
 CREATE TABLE QoL(
 	nationkey CHAR(3),
 	yearkey INTEGER,
@@ -41,7 +42,7 @@ CREATE TABLE QoL(
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
-)
+);
 
 CREATE TABLE Sustainability(
 	nationkey CHAR(3),
@@ -51,7 +52,7 @@ CREATE TABLE Sustainability(
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
-)
+);
 
 CREATE TABLE Energy(
 	nationkey CHAR(3),
@@ -62,7 +63,7 @@ CREATE TABLE Energy(
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
-)
+);
 
 CREATE TABLE Weather(
 	nationkey CHAR(3),
@@ -72,7 +73,7 @@ CREATE TABLE Weather(
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
-)
+);
 
 CREATE TABLE Finances(
 	nationkey CHAR(3),
@@ -82,4 +83,4 @@ CREATE TABLE Finances(
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation
 	FOREIGN KEY (yearkey) REFERENCES Year
-)
+);
