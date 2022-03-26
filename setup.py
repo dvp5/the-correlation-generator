@@ -4,6 +4,8 @@ import csv
 import re
 import collections
 
+###############################################################################
+# BEGIN SCRIPT CONFIG
 
 __setup = './setup/'
 __create_tables = __setup + 'create_tables.sql'
@@ -15,37 +17,35 @@ __gapminder = __setup + 'ddf--gapminder--systema_globalis/'
 __countries = __gapminder + 'countries-etc-datapoints/'
 
 table_dict = {
-    'Finances': [
-        'total_gdp_us_inflation_adjusted',
-        'long_term_unemployment_rate_percent',
-        'gapminder_gini'
-    ],
-    'NetCon': [
-        'internet_users',
-        'cell_users'
-    ],
-    'QoL': [
-        ''
-    ]
+    'Finances': {
+        'gdp': 'total_gdp_us_inflation_adjusted',
+        'unemployment': 'long_term_unemployment_rate_percent',
+        'gini_coefficient': 'gapminder_gini',
+    },
+    'NetCon': {
+        'internet_users': 'internet_users',
+        'cell_users': 'cell_phones_per_100_people',
+    },
+    'QoL': {
+        'child_deaths': 'child_mortality_0_5_year_olds_dying_per_1000_born',
+        'sanitation_usage': 'at_least_basic_sanitation_overall_access_percent',
+    },
+    'Sustainability': {
+        'yearly_CO2': 'co2_emissions_tonnes_per_person',
+        'forest_coverage': 'forest_coverage_percent',
+    },
+    'Energy': {
+        'nuclear_electricity': 'nuclear_power_generation_per_person',
+        'gas_prices': 'pump_price_for_gasoline_us_per_liter',
+    },
+    'Population': {
+        'population': 'total_population_with_projections',
+        'child_population': 'population_aged_0_4_years_total_number',
+    },
 }
 
-
-def main():
-    conn = psycopg2.connect(
-        f"dbname=corrgen user={__user} port={__port} host={__host}")
-    cur = conn.cursor()
-    #  cur.execute(f"DROP OWNED BY {__user} CASCADE")
-    with open(__create_tables) as sqlf:
-        create_tables = sqlf.read()
-    cur.execute(create_tables)
-
-    populate_nation(cur)
-    populate_year(cur)
-    populate_finances(cur)
-    populate_netcon(cur)
-    populate_qol(cur)
-    populate_sustainablility(cur)
-    populate_energy(cur)
+# END SCRIPT CONFIG
+###############################################################################
 
 
 def dictfill_from_csv(path, entry, db_dict, alias=None):
@@ -85,67 +85,42 @@ def populate_year(cur):
 
 def populate_table(table_name, entries, cur):
     table_dict = collections.defaultdict(dict)
-    for entry in entries:
-        path = __countries + 'ddf--datapoints--' + entry + '--by--geo--time.csv'
+    for field, entry in entries:
+        path = f'{__countries}ddf--datapoints--{entry}--by--geo--time.csv'
+
         dictfill_from_csv(path, entry, table_dict)
 
     for key, values in table_dict.items():
         country, year = key
-        value_string = ''.join([',' + values[entry] for entry in entries])
-        insert_string = f'INSERT INTO {table_name} VALUES (\'{country}\', {year} {value_string});'
+        value_string = ''
+        field_string = ''
+        for field, entry in entries:
+            field_string += (field + ',')
+            try:
+                value_string += (values[entry] + ',')
+            except KeyError:
+                value_string += 'NULL,'
+
+        field_string = f'(nationkey, yearkey, {field_string})'
+        value_string = f'(\'{country}\', \'{year}\', {value_string})'
+        insert_string = f'INSERT INTO {table_name} {field_string} VALUES {value_string};'
+
         cur.execute(insert_string)
 
 
-def populate_finances(cur):
-    gini_path = __countries + 'ddf--datapoints--gapminder_gini--by--geo--time.csv'
-    gdp_path = __countries + \
-        'ddf--datapoints--total_gdp_us_inflation_adjusted--by--geo--time.csv'
-    unemployment_path = __countries + \
-        'ddf--datapoints--long_term_unemployment_rate_percent--by--geo--time.csv'
+def main():
+    conn = psycopg2.connect(
+        f"dbname=corrgen user={__user} port={__port} host={__host}")
+    cur = conn.cursor()
+    #  cur.execute(f"DROP OWNED BY {__user} CASCADE")
+    with open(__create_tables) as sqlf:
+        create_tables = sqlf.read()
+    cur.execute(create_tables)
 
-    finances_dict = collections.defaultdict(dict)
-
-    dictfill_from_csv(gini_path, 'gapminder_gini', finances_dict, alias='gini')
-    dictfill_from_csv(gdp_path, 'total_gdp_us_inflation_adjusted',
-                      finances_dict, alias='gdp')
-    dictfill_from_csv(unemployment_path, 'long_term_unemployment_rate_percent',
-                      finances_dict, alias='unemployment')
-
-    for key, values in finances_dict.items():
-        country, year = key
-        gini = values['gini']
-        gdp = values['gdp']
-        unemployment = values['unemployment']
-
-        insert_string = f"INSERT INTO finances VALUES (\'{country}\', {year}, {gdp}, {unemployment}, {gini});"
-        cur.execute(insert_string)
-
-
-def populate_netcon(cur):
-    internet_path = __countries + 'ddf--datapoints--internet_users--by--geo--time.csv'
-    cell_path = __countries + \
-        'ddf--datapoints--cell_phones_per_100_people--by--geo--time.csv'
-
-    netcon_dict = collections.defaultdict(dict)
-
-    dictfill_from_csv(internet_path, )
-    pass
-
-
-def populate_qol(cur):
-    pass
-
-
-def populate_sustainablility(cur):
-    pass
-
-
-def populate_energy(cur):
-    pass
-
-
-def populate_population(cur):
-    pass
+    populate_nation(cur)
+    populate_year(cur)
+    for table_name, entries in table_dict.items():
+        populate_table(table_name, entries, cur)
 
 
 if __name__ == '__main__':
