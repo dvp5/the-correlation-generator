@@ -43,6 +43,7 @@ export PATH="/usr/lib/postgresql/12/bin:${PATH}"
 # if you followed hw0 exactly, then this will be $HOME/corrgen
 initdb $HOME/corrgen 
 pg_ctl -D $HOME/corrgen -o '-k /tmp'
+createdb corrgen
 
 # At this point, you have an empty database with no tables
 
