@@ -87,7 +87,7 @@ def populate_year(cur):
 
 def populate_table(table_name, entries, cur):
     table_dict = collections.defaultdict(dict)
-    for field, entry in entries.items():
+    for entry in entries.values():
         path = f'{__countries}ddf--datapoints--{entry}--by--geo--time.csv'
 
         dictfill_from_csv(path, entry, table_dict)
@@ -116,9 +116,8 @@ def main():
         f"dbname=corrgen user={__user} port={__port} host={__host}")
     cur = conn.cursor()
 
-    with open(__delete_tables) as sqlf:
-        delete_tables = sqlf.read()
-        cur.execute(delete_tables)
+    for table_name in table_dict:
+        cur.execute(f'DROP TABLE IF EXISTS {table_name} CASCADE;')
 
     with open(__create_tables) as sqlf:
         create_tables = sqlf.read()
