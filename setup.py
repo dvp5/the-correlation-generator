@@ -116,7 +116,8 @@ def main():
         f"dbname=corrgen user={__user} port={__port} host={__host}")
     cur = conn.cursor()
 
-    for table_name in table_dict:
+    table_names = [name for name in table_dict] + ['Nation', 'Year']
+    for table_name in table_names:
         cur.execute(f'DROP TABLE IF EXISTS {table_name} CASCADE;')
 
     with open(__create_tables) as sqlf:
