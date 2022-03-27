@@ -9,6 +9,7 @@ import collections
 
 __setup = './setup/'
 __create_tables = __setup + 'create_tables.sql'
+__delete_tables = __setup + 'delete_tables.sql'
 __user = os.environ.get('USER')
 __port = 8888
 __host = '/tmp'
@@ -73,7 +74,8 @@ def populate_nation(cur):
                 .decode("ascii", errors="backslashreplace")
             name = re.sub('\'+', '\'\'', name)
 
-            insert_string = f'INSERT INTO Nation VALUES (\'{country}\', \'{name}\');'
+            insert_string = \
+                f'INSERT INTO Nation VALUES (\'{country}\', \'{name}\');'
             cur.execute(insert_string)
 
 
@@ -99,11 +101,12 @@ def populate_table(table_name, entries, cur):
             try:
                 value_string += (',' + values[entry])
             except KeyError:
-                value_string += ',NULL'
+                value_string += ', NULL'
 
         field_string = f'(nationkey, yearkey {field_string})'
         value_string = f'(\'{country}\', \'{year}\' {value_string})'
-        insert_string = f'INSERT INTO {table_name} {field_string} VALUES {value_string};'
+        insert_string = \
+            f'INSERT INTO {table_name} {field_string} VALUES {value_string};'
 
         cur.execute(insert_string)
 
@@ -112,15 +115,21 @@ def main():
     conn = psycopg2.connect(
         f"dbname=corrgen user={__user} port={__port} host={__host}")
     cur = conn.cursor()
-    #  cur.execute(f"DROP OWNED BY {__user} CASCADE")
+
+    with open(__delete_tables) as sqlf:
+        delete_tables = sqlf.read()
+        cur.execute(delete_tables)
+
     with open(__create_tables) as sqlf:
         create_tables = sqlf.read()
-    cur.execute(create_tables)
+        cur.execute(create_tables)
 
     populate_nation(cur)
     populate_year(cur)
     for table_name, entries in table_dict.items():
         populate_table(table_name, entries, cur)
+
+    conn.commit()
 
 
 if __name__ == '__main__':
