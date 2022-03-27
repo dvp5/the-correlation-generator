@@ -78,14 +78,14 @@ def populate_nation(cur):
 
 
 def populate_year(cur):
-    for i in range(1600, 2100):
+    for i in range(0, 2200):
         insert_string = f'INSERT INTO Year VALUES ({i});'
         cur.execute(insert_string)
 
 
 def populate_table(table_name, entries, cur):
     table_dict = collections.defaultdict(dict)
-    for field, entry in entries:
+    for field, entry in entries.items():
         path = f'{__countries}ddf--datapoints--{entry}--by--geo--time.csv'
 
         dictfill_from_csv(path, entry, table_dict)
@@ -94,15 +94,15 @@ def populate_table(table_name, entries, cur):
         country, year = key
         value_string = ''
         field_string = ''
-        for field, entry in entries:
-            field_string += (field + ',')
+        for field, entry in entries.items():
+            field_string += (',' + field)
             try:
-                value_string += (values[entry] + ',')
+                value_string += (',' + values[entry])
             except KeyError:
-                value_string += 'NULL,'
+                value_string += ',NULL'
 
-        field_string = f'(nationkey, yearkey, {field_string})'
-        value_string = f'(\'{country}\', \'{year}\', {value_string})'
+        field_string = f'(nationkey, yearkey {field_string})'
+        value_string = f'(\'{country}\', \'{year}\' {value_string})'
         insert_string = f'INSERT INTO {table_name} {field_string} VALUES {value_string};'
 
         cur.execute(insert_string)

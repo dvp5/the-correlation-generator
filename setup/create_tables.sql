@@ -10,60 +10,61 @@ CREATE TABLE Year(
 );
 
 CREATE TABLE Finances(
-	nationkey CHAR(3) NOT NULL,
+	nationkey CHAR(20) NOT NULL,
 	yearkey INTEGER NOT NULL,
-	gdp FLOAT NOT NULL,
-	unemployment FLOAT NOT NULL,
-	gini_coefficient FLOAT NOT NULL,
+	gdp FLOAT,
+	unemployment FLOAT,
+	gini_coefficient FLOAT,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
 CREATE TABLE NetCon(
-	nationkey CHAR(3) NOT NULL,
+	nationkey CHAR(20) NOT NULL,
 	yearkey INTEGER NOT NULL,
-	internet_users FLOAT NOT NULL,
-	cell_users FLOAT NOT NULL,
+	internet_users FLOAT,
+	cell_users FLOAT,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
 CREATE TABLE QoL(
-	nationkey CHAR(3) NOT NULL,
+	nationkey CHAR(20) NOT NULL,
 	yearkey INTEGER NOT NULL,
-	child_deaths FLOAT NOT NULL,
-	sanitation_usage FLOAT NOT NULL,
+	child_deaths FLOAT,
+	sanitation_usage FLOAT,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
 CREATE TABLE Sustainability(
-	nationkey CHAR(3) NOT NULL,
+	nationkey CHAR(20) NOT NULL,
 	yearkey INTEGER NOT NULL,
-	yearly_CO2 FLOAT NOT NULL,
-	forest_coverage FLOAT NOT NULL,
+	yearly_CO2 FLOAT,
+	forest_coverage FLOAT,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
 CREATE TABLE Energy(
-	nationkey CHAR(3) NOT NULL,
+	nationkey CHAR(20) NOT NULL,
 	yearkey INTEGER NOT NULL,
-	nuclear_electricity FLOAT NOT NULL,
-	gas_prices FLOAT NOT NULL,
+	nuclear_electricity FLOAT,
+	gas_prices FLOAT,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year
 );
 
 CREATE TABLE Population (
-	nationkey CHAR(3) NOT NULL,
+	nationkey CHAR(20) NOT NULL,
 	yearkey INTEGER NOT NULL,
-	child_population INTEGER NOT NULL,
+    population INTEGER,
+	child_population INTEGER,
 	PRIMARY KEY (nationkey, yearkey),
 	FOREIGN KEY (nationkey) REFERENCES Nation,
 	FOREIGN KEY (yearkey) REFERENCES Year

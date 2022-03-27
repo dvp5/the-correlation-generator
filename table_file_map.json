@@ -1,0 +1,29 @@
+{
+    'table_dict' = {
+        'Finances': {
+            'gdp': 'total_gdp_us_inflation_adjusted',
+            'unemployment': 'long_term_unemployment_rate_percent',
+            'gini_coefficient': 'gapminder_gini',
+        },
+        'NetCon': {
+            'internet_users': 'internet_users',
+            'cell_users': 'cell_phones_per_100_people',
+        },
+        'QoL': {
+            'child_deaths': 'child_mortality_0_5_year_olds_dying_per_1000_born',
+            'sanitation_usage': 'at_least_basic_sanitation_overall_access_percent',
+        },
+        'Sustainability': {
+            'yearly_CO2': 'co2_emissions_tonnes_per_person',
+            'forest_coverage': 'forest_coverage_percent',
+        },
+        'Energy': {
+            'nuclear_electricity': 'nuclear_power_generation_per_person',
+            'gas_prices': 'pump_price_for_gasoline_us_per_liter',
+        },
+        'Population': {
+            'population': 'total_population_with_projections',
+            'child_population': 'population_aged_0_4_years_total_number',
+        },
+    }
+}
