@@ -42,7 +42,7 @@ export PATH="/usr/lib/postgresql/12/bin:${PATH}"
 
 # if you followed hw0 exactly, then this will be $HOME/corrgen
 initdb $HOME/corrgen 
-pg_ctl -D $HOME/corrgen -o '-k /tmp'
+pg_ctl -D $HOME/corrgen -o '-k /tmp' start
 createdb corrgen
 
 # At this point, you have an empty database with no tables
@@ -70,7 +70,7 @@ export PGHOST=/tmp
 export PGPORT=8888
 
 # if you followed hw0 exactly, then this will be $HOME/corrgen
-pg_ctl -D $HOME/corrgen -o '-k /tmp'
+pg_ctl -D $HOME/corrgen -o '-k /tmp' start
 
 source venv/bin/activate
 ```
