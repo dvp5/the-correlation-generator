@@ -86,3 +86,23 @@ Execute this when you want to deactivate the environment
 deactivate
 
 pg_ctl -D <Next to class database>/corrgen stop
+
+
+
+################################################################################
+Set up React App stuff
+
+#Go into the postgresql terminal
+psql -d corrgen
+
+#Within terminal, create another role called "me"
+CREATE ROLE me WITH LOGIN PASSWORD 'password';
+
+#quit postgresql terminal
+\q
+
+#install stuff
+npm i express pg
+
+
+#more stuff
