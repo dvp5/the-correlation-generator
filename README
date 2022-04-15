@@ -101,10 +101,17 @@ CREATE ROLE me WITH LOGIN PASSWORD 'password';
 #quit postgresql terminal
 \q
 
+#make a new directory for this app stuff
+mkdir node-api-postgres
+cd node-api-postgres
+
+#create the package.json file
+npm init -y
+
 #install express & pg
 npm i express pg
 
-#put index.js and queries.js in any directory and go to that directory
+#copy index.js and queries.js from this repo to your node-api-postgres folder wherever it may be
 
 #run the app so far (go to whatever port it tells you on a webpage, i.e. http://localhost:3000)
 node index.js
