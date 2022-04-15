@@ -69,6 +69,9 @@ the environment
 export PGHOST=/tmp
 export PGPORT=8888
 
+#if you're on ubuntu and keep forgetting this command like Courtney, do this command too!
+export PATH="/usr/lib/postgresql/12/bin:${PATH}"
+
 # if you followed hw0 exactly, then this will be $HOME/corrgen
 pg_ctl -D $HOME/corrgen -o '-k /tmp' start
 
