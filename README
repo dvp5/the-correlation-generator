@@ -101,8 +101,10 @@ CREATE ROLE me WITH LOGIN PASSWORD 'password';
 #quit postgresql terminal
 \q
 
-#install stuff
+#install express & pg
 npm i express pg
 
+#put index.js and queries.js in any directory and go to that directory
 
-#more stuff
+#run the app so far (go to whatever port it tells you on a webpage, i.e. http://localhost:3000)
+node index.js
